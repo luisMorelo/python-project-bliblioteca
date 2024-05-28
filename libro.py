@@ -59,7 +59,7 @@ class Libro(Biblioteca):
             if contador in conteo_libros:
                 conteo_libros[contador] += 1
             else:
-                conteo_libros[contador] = 0
+                conteo_libros[contador] = 1
         print('-------------------------------------------------')
         print("_____Cantidad de libros por nombre y autor____:")
         for (nombre_libro, autor_libro), conteo in conteo_libros.items():
@@ -84,7 +84,7 @@ class Libro(Biblioteca):
                 break
 
         if libro_encontrado is None:
-            print(f'El libro "{nombre_libro}" no está disponible en la biblioteca.')
+            print(f'\nEl libro "{nombre_libro}" no está disponible en la biblioteca.')
             return
 
         # Verificar si el usuario está registrado
@@ -95,7 +95,7 @@ class Libro(Biblioteca):
                 break
 
         if not usuario_registrado:
-            print(f'El usuario "{nombre_usuario}" no está registrado en el sistema.')
+            print(f'\nEl usuario "{nombre_usuario}" no está registrado en el sistema.')
             return
 
         # Prestar el libro y actualizar la disponibilidad
@@ -108,7 +108,7 @@ class Libro(Biblioteca):
         with open('datos_biblioteca.pkl', 'wb') as file:
             pickle.dump(self.datos_biblioteca, file)
 
-        print(f'El libro "{nombre_libro}" ha sido prestado a "{nombre_usuario}".')
+        print(f'\nEl libro "{nombre_libro}" ha sido prestado a "{nombre_usuario}".')
 
 
 
@@ -182,49 +182,3 @@ class Libro(Biblioteca):
                 print(f'El usuario "{nombre_usuario}" no tiene el libro "{nombre_libro}" prestado.')
         else:
             print(f'El usuario "{nombre_usuario}" no tiene libros prestados o no está registrado.')
-
-
-
-
-
-
-
-
-    def menu(self):
-        while True:
-            print('_____________________________________________')
-            print('\nMenú del sistema de gestión de biblioteca')
-            print('1. Agregar un libro')
-            print('2. Mostrar libros')
-            print('4. Registrar usuario')
-            print('5. Listar usuarios')
-            print('6. Prestar libro')
-            print('7. Listar libros de usuario')
-            print('8. Devolver libro')
-            print('9. Salir')
-            opcion = int(input('Digite una opcion: '))
-
-            if opcion == 1:
-                objeto.agregar_libro()
-            elif opcion == 2:
-                objeto.mostrar_libros()
-            elif opcion == 4:
-                objeto.regisrar_usuario()
-            elif opcion == 5:
-                objeto.listar_usuarios()
-            elif opcion == 6:
-                objeto.prestar_libro()
-            elif opcion == 7:
-                objeto.listar_libros_usuario()
-            elif opcion == 8:
-                self.devolver_libro()
-            elif opcion == 9:
-                print('Gracias por usar nuestro sistema, hasta luego!')
-                break
-            else:
-                print('Opción inválida. Inténtelo de nuevo.')
-
-objeto = Libro(libro=[], usuario=[], prestamo_libro=[], autor=[], datos_biblioteca=[])
-
-if __name__ == '__main__':
-    objeto.menu()
