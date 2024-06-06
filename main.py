@@ -23,7 +23,7 @@ def menu():
             elif opcion == 2:
                 objeto.mostrar_libros()
             elif opcion == 3:
-                objeto.prestar_libro
+                objeto.prestar_libro()
             elif opcion == 4:
                 objeto.regisrar_usuario()
             elif opcion == 5:
